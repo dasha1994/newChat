@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Oracle - @localhost" uuid="42f1399c-e4ab-4e93-bb39-c30a146d95a5">
+    <database-info product="Oracle" version="Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production" jdbc-version="11.2" driver-name="Oracle JDBC driver" driver-version="11.2.0.3.0">
+      <extra-name-characters>$#</extra-name-characters>
+      <identifier-quote-string>&quot;</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/>
+    <database-model serializer="dbm" rdbms="ORACLE" format-version="2.4">
+      <schema id="1" name="CHAT">
+        <object-id>461</object-id>
+        <introspection-timestamp>2016-02-10.12:23:50</introspection-timestamp>
+      </schema>
+      <table id="2" parent="1" name="USERS">
+        <object-id>28200</object-id>
+        <created-timestamp>2016-02-10.12:02:58</created-timestamp>
+        <modified-timestamp>2016-02-10.12:02:58</modified-timestamp>
+        <organization>HEAP</organization>
+      </table>
+      <column id="3" parent="2" name="USER_ID">
+        <mandatory>1</mandatory>
+        <data-type>NUMBER(*)</data-type>
+      </column>
+      <column id="4" parent="2" name="NAME">
+        <data-type>VARCHAR2(25)</data-type>
+      </column>
+      <column id="5" parent="2" name="BAN">
+        <data-type>VARCHAR2(25)</data-type>
+      </column>
+      <index id="6" parent="2" name="SYS_C0013281">
+        <name-surrogate>1</name-surrogate>
+        <object-id>28201</object-id>
+        <created-timestamp>2016-02-10.12:02:58</created-timestamp>
+        <modified-timestamp>2016-02-10.12:02:58</modified-timestamp>
+        <columns>USER_ID</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+        <tablespace-name>SYSTEM</tablespace-name>
+      </index>
+      <key id="7" parent="2" name="SYS_C0013281">
+        <name-surrogate>1</name-surrogate>
+        <modified-timestamp>2016-02-10.12:02:58</modified-timestamp>
+        <columns>USER_ID</columns>
+        <initially-deferred>1</initially-deferred>
+        <underlying-index>SYS_C0013281</underlying-index>
+        <primary>1</primary>
+      </key>
+    </database-model>
+  </data-source>
+</component>
