@@ -1,24 +1,21 @@
 package Server;
 
-import Client.clientThread;
-
-import java.io.PrintStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.ServerSocket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Server {
 
   private static ServerSocket serverSocket = null;
 
   private static Socket clientSocket = null;
-
-  private static final int maxClientsCount = 10;
-  private static final clientThread[] threads = new clientThread[maxClientsCount];
+  private static final List<ClientThread> threads = new ArrayList();
 
   public static void main(String args[]) {
 
-    int portNumber = 2222;
+    int portNumber = 4444;
     System.out.println("Port number=" + portNumber);
     try {
       serverSocket = new ServerSocket(portNumber);
@@ -28,16 +25,11 @@ public class Server {
     while (true) {
       try {
         clientSocket = serverSocket.accept();
-        int i = 0;
-        for (i = 0; i < maxClientsCount; i++) {
-          if (threads[i] == null) {
-            (threads[i] = new clientThread(clientSocket, threads)).start();
-            break;
-          }
-        }
+        threads.add(new ClientThread(clientSocket,threads));
+        threads.get(threads.size()-1).start();
       } catch (IOException e) {
         System.out.println(e);
       }
     }
-  }  
+  }
 }
