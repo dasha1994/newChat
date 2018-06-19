@@ -1,0 +1,851 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="PluginDataSource" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsp:Policy wsu:Id="CustomBinding_IPluginDataSource_policy">
+		<wsp:ExactlyOne>
+			<wsp:All>
+				<gzip:GZipEncoding xmlns:gzip="http://schemas.hys.com/ws/06/2004/mspolicy/netgzip1"/>
+				<wsaw:UsingAddressing/>
+			</wsp:All>
+		</wsp:ExactlyOne>
+	</wsp:Policy>
+	<wsdl:types>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:import namespace="http://schemas.datacontract.org/2004/07/DomainMSPNS.API.MSProjectAPI"/>
+			<xs:import namespace="http://schemas.datacontract.org/2004/07/MppConnector"/>
+			<xs:element name="AddProject">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="sessionid" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="resourcepoolId" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="projects" nillable="true" type="q1:ESMProjectsDataSource" xmlns:q1="http://schemas.datacontract.org/2004/07/DomainMSPNS.API.MSProjectAPI"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AddProjectResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="AddProjectResult" nillable="true" type="q2:FileInfo" xmlns:q2="http://schemas.datacontract.org/2004/07/MppConnector"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AddResourcePool">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="sessionid" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="resource" nillable="true" type="q3:ESMResourcePoolDataSource" xmlns:q3="http://schemas.datacontract.org/2004/07/DomainMSPNS.API.MSProjectAPI"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AddResourcePoolResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="AddResourcePoolResult" nillable="true" type="q4:FileInfo" xmlns:q4="http://schemas.datacontract.org/2004/07/MppConnector"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Logon">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="login" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="password" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="LogonResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="LogonResult" nillable="true" type="q5:LoginInfo" xmlns:q5="http://schemas.datacontract.org/2004/07/MppConnector"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateResourcePool">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="sessionid" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="fileInfo" nillable="true" type="q6:FileInfo" xmlns:q6="http://schemas.datacontract.org/2004/07/MppConnector"/>
+						<xs:element minOccurs="0" name="resource" nillable="true" type="q7:ESMResourcePoolDataSource" xmlns:q7="http://schemas.datacontract.org/2004/07/DomainMSPNS.API.MSProjectAPI"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateResourcePoolResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="UpdateResourcePoolResult" nillable="true" type="q8:FileInfo" xmlns:q8="http://schemas.datacontract.org/2004/07/MppConnector"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetUpdatesForResourcePool">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="sessionid" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="fileInfo" nillable="true" type="q9:FileInfo" xmlns:q9="http://schemas.datacontract.org/2004/07/MppConnector"/>
+						<xs:element minOccurs="0" name="resourcepoolId" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetUpdatesForResourcePoolResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetUpdatesForResourcePoolResult" nillable="true" type="q10:ResourcePoolUpdatesResult" xmlns:q10="http://schemas.datacontract.org/2004/07/MppConnector"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateProject">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="sessionid" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="fileInfo" nillable="true" type="q11:FileInfo" xmlns:q11="http://schemas.datacontract.org/2004/07/MppConnector"/>
+						<xs:element minOccurs="0" name="resourcepoolId" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="projects" nillable="true" type="q12:ESMProjectsDataSource" xmlns:q12="http://schemas.datacontract.org/2004/07/DomainMSPNS.API.MSProjectAPI"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateProjectResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="UpdateProjectResult" nillable="true" type="q13:FileInfo" xmlns:q13="http://schemas.datacontract.org/2004/07/MppConnector"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetUpdatesForProject">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="sessionid" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="fileInfo" nillable="true" type="q14:FileInfo" xmlns:q14="http://schemas.datacontract.org/2004/07/MppConnector"/>
+						<xs:element minOccurs="0" name="projectId" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetUpdatesForProjectResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetUpdatesForProjectResult" nillable="true" type="q15:ProjectUpdatesResult" xmlns:q15="http://schemas.datacontract.org/2004/07/MppConnector"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="IfProjectExists">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="sessionid" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="projectId" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="IfProjectExistsResponse">
+				<xs:complexType>
+					<xs:sequence/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="IfResourcePoolExists">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="sessionid" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="resourcepoolId" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="IfResourcePoolExistsResponse">
+				<xs:complexType>
+					<xs:sequence/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="IfProjectRegistered">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="sessionid" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="projectId" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="IfProjectRegisteredResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="IfProjectRegisteredResult" type="xs:boolean"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="IfResourcePollRegistered">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="sessionid" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="resourcepoolId" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="IfResourcePollRegisteredResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="IfResourcePollRegisteredResult" type="xs:boolean"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SyncProject">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="dataSourceId" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="fileInfo" nillable="true" type="q16:FileInfo" xmlns:q16="http://schemas.datacontract.org/2004/07/MppConnector"/>
+						<xs:element minOccurs="0" name="projectId" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="projectUpdate" nillable="true" type="q17:ESMProjectsDataSource" xmlns:q17="http://schemas.datacontract.org/2004/07/DomainMSPNS.API.MSProjectAPI"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SyncProjectResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="SyncProjectResult" nillable="true" type="q18:ProjectUpdatesResult" xmlns:q18="http://schemas.datacontract.org/2004/07/MppConnector"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetProjectSettings">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="sessionId" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="dataSourceId" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="projectId" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetProjectSettingsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetProjectSettingsResult" nillable="true" type="q19:ESMProjectSettingsResponse" xmlns:q19="http://schemas.datacontract.org/2004/07/DomainMSPNS.API.MSProjectAPI"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+		<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+			<xs:element name="anyType" nillable="true" type="xs:anyType"/>
+			<xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+			<xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+			<xs:element name="boolean" nillable="true" type="xs:boolean"/>
+			<xs:element name="byte" nillable="true" type="xs:byte"/>
+			<xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+			<xs:element name="decimal" nillable="true" type="xs:decimal"/>
+			<xs:element name="double" nillable="true" type="xs:double"/>
+			<xs:element name="float" nillable="true" type="xs:float"/>
+			<xs:element name="int" nillable="true" type="xs:int"/>
+			<xs:element name="long" nillable="true" type="xs:long"/>
+			<xs:element name="QName" nillable="true" type="xs:QName"/>
+			<xs:element name="short" nillable="true" type="xs:short"/>
+			<xs:element name="string" nillable="true" type="xs:string"/>
+			<xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+			<xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+			<xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+			<xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+			<xs:element name="char" nillable="true" type="tns:char"/>
+			<xs:simpleType name="char">
+				<xs:restriction base="xs:int"/>
+			</xs:simpleType>
+			<xs:element name="duration" nillable="true" type="tns:duration"/>
+			<xs:simpleType name="duration">
+				<xs:restriction base="xs:duration">
+					<xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+					<xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+					<xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="guid" nillable="true" type="tns:guid"/>
+			<xs:simpleType name="guid">
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<!-- <xs:attribute name="FactoryType" type="xs:QName"/>
+			<xs:attribute name="Id" type="xs:ID"/>
+			<xs:attribute name="Ref" type="xs:IDREF"/> -->
+		</xs:schema>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DomainMSPNS.API.MSProjectAPI" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/DomainMSPNS.API.MSProjectAPI">
+			<xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+			<xs:complexType name="ESMProjectsDataSource">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:ESMDataSource">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="projects" nillable="true" type="tns:ArrayOfESMProject"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="ESMProjectsDataSource" nillable="true" type="tns:ESMProjectsDataSource"/>
+			<xs:complexType name="ESMDataSource">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="parameters" nillable="true" type="tns:ESMDataSourceParameters"/>
+					<xs:element minOccurs="0" name="uniqueKey" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ESMDataSource" nillable="true" type="tns:ESMDataSource"/>
+			<xs:complexType name="ESMDataSourceParameters">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="connection" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="param1" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="param2" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="param3" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="type" type="tns:ExternalDataSourceType"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ESMDataSourceParametersTempFix" nillable="true" type="tns:ESMDataSourceParameters"/>
+			<xs:simpleType name="ExternalDataSourceType">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="MSP"/>
+					<xs:enumeration value="EPM"/>
+					<xs:enumeration value="TRIMERGO"/>
+					<xs:enumeration value="TOPDESK"/>
+					<xs:enumeration value="JIRA"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="ExternalDataSourceType" nillable="true" type="tns:ExternalDataSourceType"/>
+			<xs:complexType name="ArrayOfESMProject">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="ESMProject" nillable="true" type="tns:ESMProject"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfESMProject" nillable="true" type="tns:ArrayOfESMProject"/>
+			<xs:complexType name="ESMProject">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="category" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="keyword" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="manager" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="steps" nillable="true" type="tns:ArrayOfESMStep"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ESMProject" nillable="true" type="tns:ESMProject"/>
+			<xs:complexType name="ArrayOfESMStep">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="ESMStep" nillable="true" type="tns:ESMStep"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfESMStep" nillable="true" type="tns:ArrayOfESMStep"/>
+			<xs:complexType name="ESMStep">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="hid" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="notes" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="remark1" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="remark2" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="remark3" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="stepLinks" nillable="true" type="tns:ArrayOfESMStepLink"/>
+					<xs:element minOccurs="0" name="summaryId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="tags" nillable="true" type="q1:ArrayOfstring" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ESMStep" nillable="true" type="tns:ESMStep"/>
+			<xs:complexType name="ArrayOfESMStepLink">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="ESMStepLink" nillable="true" type="tns:ESMStepLink"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfESMStepLink" nillable="true" type="tns:ArrayOfESMStepLink"/>
+			<xs:complexType name="ESMStepLink">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="stepId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="type" type="tns:ESMLinkType"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ESMStepLink" nillable="true" type="tns:ESMStepLink"/>
+			<xs:simpleType name="ESMLinkType">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="FS"/>
+					<xs:enumeration value="FF"/>
+					<xs:enumeration value="SF"/>
+					<xs:enumeration value="SS"/>
+					<xs:enumeration value="Budget"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="ESMLinkType" nillable="true" type="tns:ESMLinkType"/>
+			<xs:complexType name="ESMSMS">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:ESMMilestone">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="field" nillable="true" type="xs:string"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="ESMSMS" nillable="true" type="tns:ESMSMS"/>
+			<xs:complexType name="ESMMilestone">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:ESMStep">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="deadline" type="xs:dateTime"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="ESMMilestone" nillable="true" type="tns:ESMMilestone"/>
+			<xs:complexType name="ESMIDD">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:ESMMilestone">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="field" nillable="true" type="xs:string"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="ESMIDD" nillable="true" type="tns:ESMIDD"/>
+			<xs:complexType name="ESMEDD">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:ESMMilestone">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="field" nillable="true" type="xs:string"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="ESMEDD" nillable="true" type="tns:ESMEDD"/>
+			<xs:complexType name="ESMSummary">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:ESMStep">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="endDate" type="xs:dateTime"/>
+							<xs:element minOccurs="0" name="startDate" type="xs:dateTime"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="ESMSummary" nillable="true" type="tns:ESMSummary"/>
+			<xs:complexType name="ESMTask">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:ESMStep">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="assignments" nillable="true" type="tns:ArrayOfESMAssignment"/>
+							<xs:element minOccurs="0" name="hyperlink" nillable="true" type="xs:string"/>
+							<xs:element minOccurs="0" name="readyToStartByPM" type="xs:boolean"/>
+							<xs:element minOccurs="0" name="status" nillable="true" type="xs:string"/>
+							<xs:element minOccurs="0" name="taskCost" type="xs:double"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="ESMTask" nillable="true" type="tns:ESMTask"/>
+			<xs:complexType name="ArrayOfESMAssignment">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="ESMAssignment" nillable="true" type="tns:ESMAssignment"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfESMAssignment" nillable="true" type="tns:ArrayOfESMAssignment"/>
+			<xs:complexType name="ESMAssignment">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="actualWork" type="xs:double"/>
+					<xs:element minOccurs="0" name="assignmentUnits" type="xs:double"/>
+					<xs:element minOccurs="0" name="baselineWork" type="xs:double"/>
+					<xs:element minOccurs="0" name="groupId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="remainingWork" type="xs:double"/>
+					<xs:element minOccurs="0" name="resourceId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="ucltDuration" type="xs:int"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ESMAssignment" nillable="true" type="tns:ESMAssignment"/>
+			<xs:complexType name="ESMResourcePoolDataSource">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:ESMDataSource">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="groups" nillable="true" type="tns:ArrayOfESMResourceGroup"/>
+							<xs:element minOccurs="0" name="resources" nillable="true" type="tns:ArrayOfESMResource"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="ESMResourcePoolDataSource" nillable="true" type="tns:ESMResourcePoolDataSource"/>
+			<xs:complexType name="ArrayOfESMResourceGroup">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="ESMResourceGroup" nillable="true" type="tns:ESMResourceGroup"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfESMResourceGroup" nillable="true" type="tns:ArrayOfESMResourceGroup"/>
+			<xs:complexType name="ESMResourceGroup">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="endDate" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="isUCLT" type="xs:boolean"/>
+					<xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="startDate" type="xs:dateTime"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ESMResourceGroupTempFix" nillable="true" type="tns:ESMResourceGroup"/>
+			<xs:complexType name="ArrayOfESMResource">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="ESMResource" nillable="true" type="tns:ESMResource"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfESMResource" nillable="true" type="tns:ArrayOfESMResource"/>
+			<xs:complexType name="ESMResource">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="capacity" type="xs:int"/>
+					<xs:element minOccurs="0" name="email" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="endDate" type="xs:dateTime"/>
+					<xs:element minOccurs="0" name="group" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="groups" nillable="true" type="q2:ArrayOfstring" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+					<xs:element minOccurs="0" name="id" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="startDate" type="xs:dateTime"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ESMResource" nillable="true" type="tns:ESMResource"/>
+			<xs:complexType name="ESMProjectStepsUpdate">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="projectId" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="steps" nillable="true" type="tns:ArrayOfESMStep"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ESMProjectStepsUpdate" nillable="true" type="tns:ESMProjectStepsUpdate"/>
+			<xs:complexType name="ESMProjectSettingsResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="datasourceSettings" nillable="true" type="tns:ESMProjectSettings"/>
+					<xs:element minOccurs="0" name="defaultSettings" nillable="true" type="tns:ESMProjectSettings"/>
+					<xs:element minOccurs="0" name="projectSettings" nillable="true" type="tns:ESMProjectSettings"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ESMProjectSettingsResponse" nillable="true" type="tns:ESMProjectSettingsResponse"/>
+			<xs:complexType name="ESMProjectSettings">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="budgetSettings" nillable="true" type="tns:ESMBudgetSettings"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ESMProjectSettings" nillable="true" type="tns:ESMProjectSettings"/>
+			<xs:complexType name="ESMBudgetSettings">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="autoUpdate" type="xs:boolean"/>
+					<xs:element minOccurs="0" name="enabled" type="xs:boolean"/>
+					<xs:element minOccurs="0" name="identifier" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="identifierValue" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="searchInParent" type="xs:boolean"/>
+					<xs:element minOccurs="0" name="useRelated" type="xs:boolean"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ESMBudgetSettings" nillable="true" type="tns:ESMBudgetSettings"/>
+		</xs:schema>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+			<xs:import namespace="http://schemas.datacontract.org/2004/07/DomainMSPNS.API.MSProjectAPI"/>
+			<xs:complexType name="ArrayOfstring">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring"/>
+			<xs:complexType name="ArrayOfKeyValueOfstringESMProjectStepsUpdatezHr9kH8Y">
+				<xs:annotation>
+					<xs:appinfo>
+						<IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfstringESMProjectStepsUpdatezHr9kH8Y">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Key" nillable="true" type="xs:string"/>
+								<xs:element name="Value" nillable="true" type="q1:ESMProjectStepsUpdate" xmlns:q1="http://schemas.datacontract.org/2004/07/DomainMSPNS.API.MSProjectAPI"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfKeyValueOfstringESMProjectStepsUpdatezHr9kH8Y" nillable="true" type="tns:ArrayOfKeyValueOfstringESMProjectStepsUpdatezHr9kH8Y"/>
+		</xs:schema>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MppConnector" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/MppConnector">
+			<xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+			<xs:complexType name="FileInfo">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="EpicflowName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="Version" type="xs:int"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="FileInfo" nillable="true" type="tns:FileInfo"/>
+			<xs:complexType name="LoginInfo">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="ProjectInfo" nillable="true" type="tns:ProjectInfo"/>
+					<xs:element minOccurs="0" name="SessionId" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="LoginInfo" nillable="true" type="tns:LoginInfo"/>
+			<xs:complexType name="ProjectInfo">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="ProjectIds" nillable="true" type="q1:ArrayOfstring" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+					<xs:element minOccurs="0" name="ResourcePoolsIds" nillable="true" type="q2:ArrayOfstring" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ProjectInfo" nillable="true" type="tns:ProjectInfo"/>
+			<xs:complexType name="ResourcePoolUpdatesResult">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="Data" nillable="true" type="q3:ArrayOfKeyValueOfstringESMProjectStepsUpdatezHr9kH8Y" xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+					<xs:element minOccurs="0" name="FileInfo" nillable="true" type="tns:FileInfo"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ResourcePoolUpdatesResult" nillable="true" type="tns:ResourcePoolUpdatesResult"/>
+			<xs:complexType name="ProjectUpdatesResult">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="Data" nillable="true" type="q4:ArrayOfKeyValueOfstringESMProjectStepsUpdatezHr9kH8Y" xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+					<xs:element minOccurs="0" name="FileInfo" nillable="true" type="tns:FileInfo"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ProjectUpdatesResult" nillable="true" type="tns:ProjectUpdatesResult"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="IPluginDataSource_AddProject_InputMessage">
+		<wsdl:part name="parameters" element="tns:AddProject"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_AddProject_OutputMessage">
+		<wsdl:part name="parameters" element="tns:AddProjectResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_AddResourcePool_InputMessage">
+		<wsdl:part name="parameters" element="tns:AddResourcePool"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_AddResourcePool_OutputMessage">
+		<wsdl:part name="parameters" element="tns:AddResourcePoolResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_Logon_InputMessage">
+		<wsdl:part name="parameters" element="tns:Logon"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_Logon_OutputMessage">
+		<wsdl:part name="parameters" element="tns:LogonResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_UpdateResourcePool_InputMessage">
+		<wsdl:part name="parameters" element="tns:UpdateResourcePool"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_UpdateResourcePool_OutputMessage">
+		<wsdl:part name="parameters" element="tns:UpdateResourcePoolResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_GetUpdatesForResourcePool_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetUpdatesForResourcePool"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_GetUpdatesForResourcePool_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetUpdatesForResourcePoolResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_UpdateProject_InputMessage">
+		<wsdl:part name="parameters" element="tns:UpdateProject"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_UpdateProject_OutputMessage">
+		<wsdl:part name="parameters" element="tns:UpdateProjectResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_GetUpdatesForProject_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetUpdatesForProject"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_GetUpdatesForProject_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetUpdatesForProjectResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_IfProjectExists_InputMessage">
+		<wsdl:part name="parameters" element="tns:IfProjectExists"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_IfProjectExists_OutputMessage">
+		<wsdl:part name="parameters" element="tns:IfProjectExistsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_IfResourcePoolExists_InputMessage">
+		<wsdl:part name="parameters" element="tns:IfResourcePoolExists"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_IfResourcePoolExists_OutputMessage">
+		<wsdl:part name="parameters" element="tns:IfResourcePoolExistsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_IfProjectRegistered_InputMessage">
+		<wsdl:part name="parameters" element="tns:IfProjectRegistered"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_IfProjectRegistered_OutputMessage">
+		<wsdl:part name="parameters" element="tns:IfProjectRegisteredResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_IfResourcePollRegistered_InputMessage">
+		<wsdl:part name="parameters" element="tns:IfResourcePollRegistered"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_IfResourcePollRegistered_OutputMessage">
+		<wsdl:part name="parameters" element="tns:IfResourcePollRegisteredResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_SyncProject_InputMessage">
+		<wsdl:part name="parameters" element="tns:SyncProject"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_SyncProject_OutputMessage">
+		<wsdl:part name="parameters" element="tns:SyncProjectResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_GetProjectSettings_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetProjectSettings"/>
+	</wsdl:message>
+	<wsdl:message name="IPluginDataSource_GetProjectSettings_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetProjectSettingsResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="IPluginDataSource">
+		<wsdl:operation name="AddProject">
+			<wsdl:input wsaw:Action="http://tempuri.org/IPluginDataSource/AddProject" message="tns:IPluginDataSource_AddProject_InputMessage"/>
+			<wsdl:output wsaw:Action="http://tempuri.org/IPluginDataSource/AddProjectResponse" message="tns:IPluginDataSource_AddProject_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="AddResourcePool">
+			<wsdl:input wsaw:Action="http://tempuri.org/IPluginDataSource/AddResourcePool" message="tns:IPluginDataSource_AddResourcePool_InputMessage"/>
+			<wsdl:output wsaw:Action="http://tempuri.org/IPluginDataSource/AddResourcePoolResponse" message="tns:IPluginDataSource_AddResourcePool_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="Logon">
+			<wsdl:input wsaw:Action="http://tempuri.org/IPluginDataSource/Logon" message="tns:IPluginDataSource_Logon_InputMessage"/>
+			<wsdl:output wsaw:Action="http://tempuri.org/IPluginDataSource/LogonResponse" message="tns:IPluginDataSource_Logon_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateResourcePool">
+			<wsdl:input wsaw:Action="http://tempuri.org/IPluginDataSource/UpdateResourcePool" message="tns:IPluginDataSource_UpdateResourcePool_InputMessage"/>
+			<wsdl:output wsaw:Action="http://tempuri.org/IPluginDataSource/UpdateResourcePoolResponse" message="tns:IPluginDataSource_UpdateResourcePool_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetUpdatesForResourcePool">
+			<wsdl:input wsaw:Action="http://tempuri.org/IPluginDataSource/GetUpdatesForResourcePool" message="tns:IPluginDataSource_GetUpdatesForResourcePool_InputMessage"/>
+			<wsdl:output wsaw:Action="http://tempuri.org/IPluginDataSource/GetUpdatesForResourcePoolResponse" message="tns:IPluginDataSource_GetUpdatesForResourcePool_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateProject">
+			<wsdl:input wsaw:Action="http://tempuri.org/IPluginDataSource/UpdateProject" message="tns:IPluginDataSource_UpdateProject_InputMessage"/>
+			<wsdl:output wsaw:Action="http://tempuri.org/IPluginDataSource/UpdateProjectResponse" message="tns:IPluginDataSource_UpdateProject_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetUpdatesForProject">
+			<wsdl:input wsaw:Action="http://tempuri.org/IPluginDataSource/GetUpdatesForProject" message="tns:IPluginDataSource_GetUpdatesForProject_InputMessage"/>
+			<wsdl:output wsaw:Action="http://tempuri.org/IPluginDataSource/GetUpdatesForProjectResponse" message="tns:IPluginDataSource_GetUpdatesForProject_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="IfProjectExists">
+			<wsdl:input wsaw:Action="http://tempuri.org/IPluginDataSource/IfProjectExists" message="tns:IPluginDataSource_IfProjectExists_InputMessage"/>
+			<wsdl:output wsaw:Action="http://tempuri.org/IPluginDataSource/IfProjectExistsResponse" message="tns:IPluginDataSource_IfProjectExists_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="IfResourcePoolExists">
+			<wsdl:input wsaw:Action="http://tempuri.org/IPluginDataSource/IfResourcePoolExists" message="tns:IPluginDataSource_IfResourcePoolExists_InputMessage"/>
+			<wsdl:output wsaw:Action="http://tempuri.org/IPluginDataSource/IfResourcePoolExistsResponse" message="tns:IPluginDataSource_IfResourcePoolExists_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="IfProjectRegistered">
+			<wsdl:input wsaw:Action="http://tempuri.org/IPluginDataSource/IfProjectRegistered" message="tns:IPluginDataSource_IfProjectRegistered_InputMessage"/>
+			<wsdl:output wsaw:Action="http://tempuri.org/IPluginDataSource/IfProjectRegisteredResponse" message="tns:IPluginDataSource_IfProjectRegistered_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="IfResourcePollRegistered">
+			<wsdl:input wsaw:Action="http://tempuri.org/IPluginDataSource/IfResourcePollRegistered" message="tns:IPluginDataSource_IfResourcePollRegistered_InputMessage"/>
+			<wsdl:output wsaw:Action="http://tempuri.org/IPluginDataSource/IfResourcePollRegisteredResponse" message="tns:IPluginDataSource_IfResourcePollRegistered_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="SyncProject">
+			<wsdl:input wsaw:Action="http://tempuri.org/IPluginDataSource/SyncProject" message="tns:IPluginDataSource_SyncProject_InputMessage"/>
+			<wsdl:output wsaw:Action="http://tempuri.org/IPluginDataSource/SyncProjectResponse" message="tns:IPluginDataSource_SyncProject_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetProjectSettings">
+			<wsdl:input wsaw:Action="http://tempuri.org/IPluginDataSource/GetProjectSettings" message="tns:IPluginDataSource_GetProjectSettings_InputMessage"/>
+			<wsdl:output wsaw:Action="http://tempuri.org/IPluginDataSource/GetProjectSettingsResponse" message="tns:IPluginDataSource_GetProjectSettings_OutputMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="CustomBinding_IPluginDataSource" type="tns:IPluginDataSource">
+		<wsp:PolicyReference URI="#CustomBinding_IPluginDataSource_policy"/>
+		<soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="AddProject">
+			<soap12:operation soapAction="http://tempuri.org/IPluginDataSource/AddProject" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="AddResourcePool">
+			<soap12:operation soapAction="http://tempuri.org/IPluginDataSource/AddResourcePool" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Logon">
+			<soap12:operation soapAction="http://tempuri.org/IPluginDataSource/Logon" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateResourcePool">
+			<soap12:operation soapAction="http://tempuri.org/IPluginDataSource/UpdateResourcePool" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetUpdatesForResourcePool">
+			<soap12:operation soapAction="http://tempuri.org/IPluginDataSource/GetUpdatesForResourcePool" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateProject">
+			<soap12:operation soapAction="http://tempuri.org/IPluginDataSource/UpdateProject" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetUpdatesForProject">
+			<soap12:operation soapAction="http://tempuri.org/IPluginDataSource/GetUpdatesForProject" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="IfProjectExists">
+			<soap12:operation soapAction="http://tempuri.org/IPluginDataSource/IfProjectExists" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="IfResourcePoolExists">
+			<soap12:operation soapAction="http://tempuri.org/IPluginDataSource/IfResourcePoolExists" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="IfProjectRegistered">
+			<soap12:operation soapAction="http://tempuri.org/IPluginDataSource/IfProjectRegistered" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="IfResourcePollRegistered">
+			<soap12:operation soapAction="http://tempuri.org/IPluginDataSource/IfResourcePollRegistered" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SyncProject">
+			<soap12:operation soapAction="http://tempuri.org/IPluginDataSource/SyncProject" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetProjectSettings">
+			<soap12:operation soapAction="http://tempuri.org/IPluginDataSource/GetProjectSettings" style="document"/>
+			<wsdl:input>
+				<soap12:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="PluginDataSource">
+		<wsdl:port name="CustomBinding_IPluginDataSource" binding="tns:CustomBinding_IPluginDataSource">
+			<soap12:address location="http://localhost:16745/pluginapi"/>
+			<!--<wsa10:EndpointReference>
+				<wsa10:Address>http://localhost:16741/pluginapi</wsa10:Address>
+			</wsa10:EndpointReference> -->
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
